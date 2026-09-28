@@ -70,6 +70,58 @@ Collect 5–10 reference images from relevant products and interfaces. Save each
 
 Record each useful source, what it supports, and important limitations. Research the weather variables, apparel guidance, reminders, accessibility, privacy, artwork, weather providers, and technical options needed for informed decisions.
 
+### Weather provider
+
+Compared three free options:
+
+- **[National Weather Service API](https://www.weather.gov/documentation/services-web-alerts)** — free, no key, official US-only source, matches the brief's "US location" scope exactly. Requires a two-step lat/lon → grid point → forecast lookup, a `User-Agent` header, and a separate geocoder for manual address entry (no built-in geocoding).
+- **[OpenWeatherMap One Call 3.0](https://openweathermap.org/price)** — free tier of 1,000 calls/day, requires signup with a credit card on file. Global coverage with built-in geocoding, but a search result flagged possible deprecation in favor of a newer version; not independently verified.
+- **[Open-Meteo](https://open-meteo.com/en/terms)** — free, no key, no signup, 10,000 calls/day. Current + forecast + geocoding endpoints in one API. Free tier is non-commercial-use only; [Open-Meteo's terms](https://open-meteo.com/en/terms) explicitly list "educational content" as a qualifying non-commercial use, which fits this project. Data is licensed CC-BY 4.0, requiring attribution.
+
+**Decision: Open-Meteo.** Lowest integration friction (no key/signup, built-in geocoding), generous free limits, and its terms directly cover educational use. Attribution requirement is satisfied by the brief's existing info-screen requirement to credit the weather-data source.
+
+Confirmed via [Open-Meteo's docs](https://open-meteo.com/en/docs) that the variables needed for every reminder category in the brief are available in one API: UV index (sunscreen), precipitation probability/amount (umbrella), apparent/"feels-like" temperature (outfit warmth, combines wind chill + humidity + solar radiation), relative humidity/dew point (hydration), and wind speed/gusts (jacket vs. layers). No second data source needed.
+
+### Apparel and reminder guidance
+
+- **Sunscreen (UV Index):** [EPA UV Index scale](https://www.epa.gov/sites/default/files/documents/uviguide.pdf) — 1–2 Low, 3–5 Moderate, 6–7 High, 8–10 Very High, 11+ Extreme. EPA guidance recommends SPF 30+ broad-spectrum sunscreen starting at Moderate (3+), with long sleeves added at High (6+) and reapplication every two hours at Extreme (11+).
+- **Umbrella (precipitation):** No single official percentage threshold found; [Open-Meteo's precipitation probability field](https://open-meteo.com/en/docs) uses a >0.1mm threshold to register a "yes." A reasonable, common convention (used by most consumer weather apps) is to surface the umbrella reminder at ≥40–50% precipitation probability — this is a product judgment call, not a cited standard, and needs Developer sign-off.
+- **Cold-weather layering:** [NWS wind chill guidance](https://www.weather.gov/media/unr/windchill.pdf) — wind chill is only defined at or below 50°F with wind above 3 mph; recommends layering, a hat, and covering skin as wind chill drops, with frostbite risk at extreme values. Supports using apparent/"feels-like" temperature (already available from Open-Meteo) rather than raw air temperature for the outfit-warmth rule.
+- **Hydration:** No cited standard — triggered as a simple common-sense proxy based on high temperature and/or high UV rather than a specific outdoor-exertion guideline (workplace heat-stress figures don't fit a student's daily walk to class).
+
+**Needs Developer decision:** exact numeric thresholds for each recommendation category and reminder (e.g. the specific °F bands per outfit category, the precipitation-probability cutoff, the temperature/UV cutoff for hydration) belong in `spec.md` as testable requirements, informed by this sourced guidance.
+
+### Privacy
+
+**This app** (client-side static site, no backend planned):
+- Device location, if used, comes from the browser's Geolocation API, which prompts the user for permission directly — the app never accesses it silently.
+- The selected location (device or manual) is sent to Open-Meteo to fetch weather data; that is the only place location data leaves the device.
+- Per the brief, only the most recent location is saved, in browser storage (e.g. `localStorage`) on the user's own device — not sent to or stored on any server, since there is no backend.
+- No accounts, no analytics or tracking planned.
+
+**Open-Meteo** (confirmed via [their terms](https://open-meteo.com/en/terms)):
+- The Open-Meteo website itself collects no user data and uses no cookies.
+- The free API logs IP address and request coordinates only for abuse-prevention/troubleshooting, does not share logs with third parties, and deletes them after 90 days.
+
+### Artwork approach
+
+**Decision: AI-generated art** for the character and outfit variations. Specific tool not yet chosen — to be selected during asset creation, once recommendation categories (and the resulting art count) are finalized in `spec.md`. The info screen's art-credits/license requirement will need to disclose the AI tool used once picked.
+
+### Accessibility standard
+
+**Decision: WCAG 2.2 Level AA.** Confirmed via [W3C's WCAG 2.2](https://www.w3.org/TR/WCAG22/) (current recommendation) and [WebAIM](https://webaim.org/articles/contrast/). Requirements most relevant to this app:
+
+- **Contrast:** 4.5:1 for normal text, 3:1 for large text (18pt+, or 14pt bold) and for UI components/graphics.
+- **Don't rely on color alone (1.4.1):** weather state (warm/cold, rain/clear) and reminders must also be conveyed through icons/text, not color shift alone — supports user story #4 and the icon-row pattern noted in reference #6/#7.
+- **Target size (2.5.8):** interactive elements at least 24×24 CSS px — relevant to one-handed phone use.
+- **Text alternatives (1.1.1):** the character illustration and weather/reminder icons need accessible text equivalents so the recommendation state isn't conveyed by the picture alone.
+
+Screen-reader-specific implementation (ARIA patterns, live regions) deferred to `spec.md`/build time once the actual screen structure is known.
+
+### Deployment
+
+**Decision: GitHub Pages**, matching the brief's recommendation. This repo is already public on GitHub, so Pages can be enabled directly from it without a separate hosting account.
+
 ## Decisions
 
 Record the selected weather provider, forecast range, recommendation categories and rules, screen structure, visual direction, artwork approach (original, AI-generated, or appropriately licensed), deployment method, and one additional feature justified by the research. Briefly explain important trade-offs.
