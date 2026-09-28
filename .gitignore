@@ -1,0 +1,17 @@
+# OS
+.DS_Store
+
+# Editor
+.vscode/
+.idea/
+
+# Dependencies (once a build tool is added)
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Env / secrets
+.env
+.env.local
