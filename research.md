@@ -134,7 +134,7 @@ Once the recommendation categories are chosen, estimate the art needed: the char
 - **Deployment:** GitHub Pages.
 - **Recommendation categories:** weather-based groups (e.g. Hot, Warm, Mild, Cool, Cold), each with at least 3 complete outfit variations drawn on the character, per the brief. Exact groups and thresholds are defined in `spec.md`.
 - **Reminder categories:** umbrella (rain), sunscreen (UV), hydration (heat) — the three examples named directly in the brief. Each needs at least 3 wording variations per the brief.
-- **Art estimate:** about 5 weather groups × 3 complete outfits = about 15 character images, plus weather icons (sun/cloud/rain/snow, etc.) and reminder icons (umbrella, sunscreen, water). Confirms AI-generated art is the right call above — 12+ clothing pieces plus icons is a lot to commission or hand-draw within the project timeline.
+- **Art estimate:** about 5 weather groups × 3 complete outfits = about 15 character images, plus weather icons (sun/cloud/rain/snow, etc.) and reminder icons (umbrella, sunscreen, water). Confirms AI-generated art is the right call above — about 15 character images plus icons is a lot to commission or hand-draw within the project timeline.
 - **Visual direction:** cartoon, Pixar-style 3D-ish illustration. Detailed screen structure and layout deferred to `spec.md`, defined from hand-drawn screens once drawn.
 - **Additional feature:** quick two-location switch — lets the User flip between two saved locations (e.g. home town and campus) without re-entering one each time. Directly answers user story #5 (splitting time between two places), which the brief's "save only the most recent location" requirement doesn't cover on its own.
 
