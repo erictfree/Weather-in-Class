@@ -65,7 +65,7 @@ Define the weather inputs, recommendation categories, coded rules, and shared st
 | Cool | 40–54 | Sweater or hoodie, jacket, jeans |
 | Cold | below 40 | Heavy coat, hat, boots |
 
-Forecast days use the daily maximum feels-like temperature.
+Today uses the current feels-like temperature, matching the "Current conditions" card. Forecast days use the daily maximum feels-like temperature.
 
 ## Content variation
 
