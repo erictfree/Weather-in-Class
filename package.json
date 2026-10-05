@@ -1,0 +1,9 @@
+{
+  "name": "weather-in-class",
+  "private": true,
+  "type": "module",
+  "description": "No dependencies; package.json only marks the JS as ES modules and defines the test command.",
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  }
+}
