@@ -131,7 +131,7 @@ Define at least three outfit variations for each recommendation category and at 
 |---|---|---|---|
 | Umbrella | Rain's likely. Grab an umbrella. | Umbrella day. Don't get caught between classes. | Showers in the forecast. Pack an umbrella. |
 | Sunscreen | UV is up. Put on sunscreen (SPF 30+). | Sunscreen before you head out. | Strong sun today. SPF 30+ is a good call. |
-| Hydration | It's a hot one. Bring a water bottle. | Stay hydrated. Fill up your bottle. | Heat's on. Keep water with you. |
+| Hydration | Big sun and heat today. Bring a water bottle. | Stay hydrated. Fill up your bottle. | Heat's on. Keep water with you. |
 | Layer note | Cooler at the start or end of the day. Bring a layer. | It'll feel colder for part of the day. Pack an extra layer. | Chilly hours ahead. Throw a layer in your bag. |
 
 ## Assets
