@@ -144,9 +144,11 @@ DRAFT.
 | Asset | Count | Where | Format | Source |
 |---|---|---|---|---|
 | Character in each outfit (IDs in Content variation) | 15 | Main screen | PNG or WebP, transparent background | AI-generated (tool still to be chosen; credited in R11) |
-| Weather icons: clear, partly cloudy, cloudy, fog, rain, snow, thunderstorm | 7 | Weather card, day strip | SVG | *(open)* |
-| Reminder icons: umbrella, sunscreen, water, layer | 4 | Reminder row | SVG | *(open)* |
-| UI icons: edit ✎, location crosshair, close ×, checkmark | 4 | Controls | SVG | *(open)* |
+| Weather icons: clear, partly cloudy, cloudy, fog, rain, snow, thunderstorm | 7 | Weather card, day strip | PNG or WebP, transparent background, exported at 2× | AI-generated, same tool and style as the character |
+| Reminder icons: umbrella, sunscreen, water, layer | 4 | Reminder row | PNG or WebP, transparent background, exported at 2× | AI-generated, same tool and style as the character |
+| UI icons: edit ✎, location crosshair, close ×, checkmark | 4 | Controls | PNG or WebP, transparent background, exported at 2× | AI-generated, same tool and style as the character |
+
+All icons are AI-generated (Developer decision). Every icon has a text label or accessible name next to it (R15), so its meaning never depends on the image alone. Icons must stay legible at their smallest display size (about 24px) and meet 3:1 contrast against their background.
 
 ## Out of scope
 
