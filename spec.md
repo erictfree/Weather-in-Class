@@ -72,6 +72,8 @@ Every day, today included, uses the daily maximum feels-like temperature to choo
 | Reminder | Trigger | Input (today / forecast day) | Basis |
 |---|---|---|---|
 | Umbrella | Rain chance 40% or higher | Highest hourly precipitation probability from now to midnight / daily maximum precipitation probability | Product decision; there is no official cut-off (`research.md`) |
+| Sunscreen | UV index 3 or higher | Daily maximum UV index (both) | EPA UV Index scale: Moderate and above (`research.md`) |
+| Hydration | Feels-like 80°F or higher, or UV index 8 or higher | Daily maximum feels-like and daily maximum UV index (both) | Product decision; there is no cited standard (`research.md`) |
 
 ## Content variation
 
