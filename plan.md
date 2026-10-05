@@ -44,13 +44,8 @@ Summarize the structure, data flow, dependencies, task order, and main risks.
 
 **Main risks.**
 
-- **Reverse geocoding (open decision).** Open-Meteo has no reverse geocoding: `/v1/reverse` returns 404, checked on 2026-10-05. On its own, "Use my location" can't give the header a place name or confirm the position is in the US (R3). Options:
-  - (a) Check the coordinates against rough boxes around the US, including Alaska and Hawaii, and label the slot "My location". This needs no extra service but is crude near the borders.
-  - (b) Add a reverse-geocoding service. This adds a second provider and requires revising R16 and the privacy text.
-  
-  Either option needs a `spec.md` revision.
+- **Device location naming (resolved).** Open-Meteo has no reverse geocoding, so "Use my location" is labelled "My location" and assumed to be in the US (R3 revised in `spec.md`).
 - **Consistent character art.** All 15 outfit images must show the same character. Run a 2–3 image style test before committing to a tool.
-- **ZIP search.** Open-Meteo geocoding should support postal codes, but this has not been checked: the sandbox network blocked the geocoding host. Test "78701" in the browser at checkpoint 6.
 - **"Today" across timezones.** The date and the "now to midnight" rain window must use the location's timezone, not the device's. Test with a location in a different timezone.
 - **Deployment branch.** Pages has to serve from `main` (or a Pages workflow), so finished work needs merging into `main`. That merge is the Developer's decision.
 
@@ -72,7 +67,7 @@ Summarize the structure, data flow, dependencies, task order, and main risks.
 - [ ] **CP3 Rules:** `rules.js` and its unit tests cover the outfit groups, layer note, umbrella, sunscreen, hydration and the WMO-to-icon map. Check: R9 boundary tests pass (`node --test`), with output shown.
 - [ ] **CP4 Recommendation state and variations:** `state.js` builds one state with independent random picks remembered per location and date. `ui.js` renders the character, description, reminders and alt text only from that state. Check: R8 (edit `window.appState` and every output changes) and R10 (picks vary across reloads and stay the same when you return to a date).
 - [ ] **CP5 Date selection:** the 7-day strip (swipe on phone, full row on laptop) with a selected marker that does not rely on colour, plus the header date and the "Current conditions" / "Forecast" label. Check: R6, R7.
-- [ ] **CP6 Location:** a bottom sheet on phone and a dropdown on laptop, with US-only city and ZIP search, "Use my location", the denied-permission message, two `localStorage` slots with a one-tap switch, and first-visit behaviour with "+ Add city". Check: R2, R3, R4, R5, R5a. Needs the reverse-geocoding decision first.
+- [ ] **CP6 Location:** a bottom sheet on phone and a dropdown on laptop, with US-only city and ZIP search, "Use my location", the denied-permission message, two `localStorage` slots with a one-tap switch, and first-visit behaviour with "+ Add city". Check: R2, R3, R4, R5, R5a.
 - [ ] **CP7 Loading and errors:** "Loading…", the plain-language error with Retry, "Last updated [time]", and recommendation content hidden until there is valid data. Check: R12 with network throttling and blocked requests.
 - [ ] **CP8 Credits popup:** creator, Open-Meteo link and CC BY 4.0, methods and sources, privacy, and art credits. Focus is trapped and Esc closes it. Check: R11.
 - [ ] **CP9 Accessibility and privacy pass:** axe or Lighthouse with no failures, a keyboard-only pass and a screen-reader spot check. In the network tab, requests go only to Open-Meteo and the site host, and `localStorage` holds only the location slots. Check: R15, R16.
@@ -109,6 +104,8 @@ Before testing, record the purpose, a few realistic tasks, non-leading prompts, 
 ## Revisions
 
 Record material plan changes and why they were made.
+
+- **2026-10-05:** Checked Open-Meteo geocoding directly: "78701" finds Austin, TX, and `countryCode=US` limits "London" to US towns, so the ZIP-search risk is removed. Reverse geocoding is unavailable; resolved by the R3 revision in `spec.md`.
 
 ## Saving transcripts
 

@@ -55,7 +55,7 @@ Translate every fixed brief requirement and the selected research-driven feature
 |---|---|---|
 | R1 | **Live weather.** Current and 7-day forecast data (today plus 6 days) comes from Open-Meteo. No values are hard-coded. | The values shown match an Open-Meteo API response for the same coordinates and time. |
 | R2 | **Manual location.** In Change location, the User searches by US city or ZIP using Open-Meteo geocoding. Only US results are listed. | "Austin" and "78701" both find Austin, TX. "London" shows no UK result. |
-| R3 | **Device location.** "Use my location" asks for browser permission and uses the coordinates it returns. A location outside the US shows a message and the location is not used. | Allowing permission shows local weather. A non-US position shows the message. |
+| R3 | **Device location.** "Use my location" asks for browser permission and uses the coordinates it returns. The slot and header show "My location". The app assumes the device is in the US and does not check (Developer decision). | Allowing permission shows local weather, with "My location" in the header and the city switch. |
 | R4 | **Denied location.** If permission is denied or unavailable, a short message appears in the sheet and search still works. | Block location in the browser, tap "Use my location", see the message, then search successfully. |
 | R5 | **Two-city switch (additional feature).** Two location slots. ✎ replaces the selected slot. Switching takes one tap. Both slots and the active one are saved in `localStorage`. This is a deliberate change from the brief's single saved location. | Set Austin and LA, switch between them, reload: both are still there and the active one is the same. |
 | R5a | **First visit.** With no saved location, the Change location sheet (or dropdown on laptop) opens automatically with "Use my location" at the top. Until a second city is set, the empty slot in the city switch reads "+ Add city". | In a fresh browser profile the sheet opens on load. After the first location is chosen, the switch shows that city and "+ Add city". |
@@ -188,6 +188,8 @@ Record features intentionally excluded from this project.
 ## Revisions
 
 After implementation or testing, record requirement changes and the evidence that prompted them. Update the screen drawings when a material layout or interaction changes.
+
+- **2026-10-05 (planning):** R3 changed. Open-Meteo has no reverse geocoding: `/v1/reverse` returns 404, and its documentation lists only `/v1/search` and `/v1/get`. Without it, device coordinates can't be turned into a place name or checked against the US. The Developer decided that device location is assumed to be in the US, with no check, and is labelled "My location". Typed searches stay US-only (R2). This keeps location data going only to Open-Meteo (R16).
 
 ## Approval
 
