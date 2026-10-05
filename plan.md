@@ -30,7 +30,7 @@ Summarize the structure, data flow, dependencies, task order, and main risks.
 
 ### Approvals
 
-- [ ] Research approved
+- [x] Research approved
 - [ ] Specification approved
 - [ ] Plan approved
 
