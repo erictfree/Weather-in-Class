@@ -13,6 +13,7 @@ export const GROUPS = [
   { id: "cold", min: -Infinity },
 ];
 
+export const LAYER_NOTE_GROUP = "cool";   // the low must be Cool or colder (Developer decision)
 export const UMBRELLA_RAIN_CHANCE = 40; // % — product decision, no official cut-off
 export const SUNSCREEN_UV = 3;          // EPA UV Index: Moderate and above
 export const HYDRATION_FEELS_LIKE = 80; // °F — product decision
@@ -38,13 +39,14 @@ export function recommend(day, currentFeelsLike) {
   const group = groupFor(day.feelsMax);
   if (!group) return { group: null, layerNote: false, reminders: [] };
 
-  // Layer note: the coldest part of the day falls in a colder group.
-  // Today uses the lower of current and daily-minimum feels-like; forecast days use the minimum.
+  // Layer note: the coldest part of the day is actually chilly (Cool or Cold, below 55°F)
+  // and colder than the day's group. Today uses the lower of current and daily-minimum
+  // feels-like; forecast days use the minimum.
   const lows = [day.feelsMin];
   if (day.isToday) lows.push(currentFeelsLike);
   const validLows = lows.filter(isNumber);
   const lowGroup = validLows.length ? groupFor(Math.min(...validLows)) : null;
-  const layerNote = lowGroup !== null && rank(lowGroup) > rank(group);
+  const layerNote = lowGroup !== null && rank(lowGroup) > rank(group) && rank(lowGroup) >= rank(LAYER_NOTE_GROUP);
 
   // Reminders, in display order.
   const rain = day.isToday ? day.rainChanceRestOfDay : day.rainChance;

@@ -86,7 +86,7 @@ Define the weather inputs, recommendation categories, coded rules, and shared st
 | Cool | 40–54 | Sweater or hoodie, jacket, jeans |
 | Cold | below 40 | Heavy coat, hat, boots |
 
-Every day, today included, uses the daily maximum feels-like temperature to choose the group. **Layer note:** if the lower of the current and daily-minimum feels-like temperatures falls in a colder group than the chosen one, the clothing description adds a short note to bring a layer, for example "Cool morning, bring a layer." On forecast days only the daily minimum is used.
+Every day, today included, uses the daily maximum feels-like temperature to choose the group. **Layer note:** if the lower of the current and daily-minimum feels-like temperatures is below 55°F (Cool or Cold) and falls in a colder group than the chosen one, the clothing description adds a short note to bring a layer. On forecast days only the daily minimum is used.
 
 **Reminders.**
 
@@ -189,6 +189,7 @@ Record features intentionally excluded from this project.
 
 After implementation or testing, record requirement changes and the evidence that prompted them. Update the screen drawings when a material layout or interaction changes.
 
+- **2026-10-05 (build, CP3):** Layer note narrowed to lows below 55°F (Cool or Cold). Evidence: run on live forecasts, the original rule fired on nearly every day, because the overnight low is almost always one group colder than the daytime high. For example, an 89°F day in Austin with a 74°F pre-dawn low got "bring a layer". Developer decision.
 - **2026-10-05 (planning):** First character set generated with ChatGPT and adopted as **test art only**. All 15 outfits match their descriptions and the character is consistent, but it reads as an early teen rather than a college student. The Developer will regenerate the set before final delivery. The icons have not been generated yet; using ChatGPT for them too would keep the style matched.
 - **2026-10-05 (planning):** R3 changed. Open-Meteo has no reverse geocoding: `/v1/reverse` returns 404, and its documentation lists only `/v1/search` and `/v1/get`. Without it, device coordinates can't be turned into a place name or checked against the US. The Developer decided that device location is assumed to be in the US, with no check, and is labelled "My location". Typed searches stay US-only (R2). This keeps location data going only to Open-Meteo (R16).
 

@@ -31,15 +31,19 @@ test("group uses the daily maximum feels-like, today included", () => {
   assert.equal(recommend(day({ isToday: true, feelsMax: 85, feelsMin: 70 }), 72).group, "hot");
 });
 
-test("layer note when the low falls in a colder group", () => {
-  assert.equal(recommend(day({ feelsMax: 70, feelsMin: 66 })).layerNote, false); // both warm
-  assert.equal(recommend(day({ feelsMax: 70, feelsMin: 64 })).layerNote, true);  // mild low
+test("layer note only when the low is chilly (below 55°F) and in a colder group", () => {
+  assert.equal(recommend(day({ feelsMax: 89, feelsMin: 74 })).layerNote, false); // warm low on a hot day
+  assert.equal(recommend(day({ feelsMax: 70, feelsMin: 55 })).layerNote, false); // mild low
+  assert.equal(recommend(day({ feelsMax: 70, feelsMin: 54 })).layerNote, true);  // cool low
+  assert.equal(recommend(day({ feelsMax: 45, feelsMin: 39 })).layerNote, true);  // cool day, cold low
+  assert.equal(recommend(day({ feelsMax: 50, feelsMin: 41 })).layerNote, false); // low in the same group
+  assert.equal(recommend(day({ feelsMax: 30, feelsMin: 10 })).layerNote, false); // already Cold
 });
 
 test("today's layer note uses the lower of current and daily-minimum feels-like", () => {
-  const today = day({ isToday: true, feelsMax: 70, feelsMin: 66 });
-  assert.equal(recommend(today, 68).layerNote, false);
-  assert.equal(recommend(today, 63).layerNote, true); // current is colder than the daily min
+  const today = day({ isToday: true, feelsMax: 70, feelsMin: 58 });
+  assert.equal(recommend(today, 60).layerNote, false);
+  assert.equal(recommend(today, 52).layerNote, true); // current is colder than the daily min
 });
 
 test("forecast days ignore the current feels-like for the layer note", () => {
