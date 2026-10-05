@@ -46,4 +46,9 @@ When the Developer directs the Agent to save the transcript, save the entire cur
 
 # Project
 
-Fill in as the project takes shape: how to run it locally, how to test it, and any commands or structure that aren't obvious from the code.
+Static site with no build step (plain HTML, CSS and JavaScript modules).
+
+- Run locally: `python3 -m http.server 8000` in the repo root, then open http://localhost:8000. Opening `index.html` directly doesn't work, because browsers block JavaScript modules from `file://`.
+- Layout: phone below 900px, laptop at 900px and above (`css/styles.css`).
+- Code: `js/ui.js` draws everything from one state object. `js/main.js` currently holds fake data (CP1).
+- Art: `assets/characters/<outfit-id>.webp` and `assets/icons/<name>.webp`.

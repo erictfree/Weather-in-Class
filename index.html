@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weather in Class</title>
+  <meta name="description" content="What to wear today, based on the forecast.">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="module" src="js/main.js"></script>
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <h1 class="place" id="place">—</h1>
+      <p class="context" id="context">—</p>
+    </header>
+
+    <main class="main">
+      <section class="weather-card" aria-labelledby="card-label" aria-live="polite">
+        <h2 class="card-label" id="card-label">—</h2>
+        <div class="card-body" id="card-body"></div>
+      </section>
+
+      <section class="outfit" aria-label="What to wear">
+        <img class="character" id="character" src="" alt="" width="600" height="900">
+        <p class="description" id="description"></p>
+        <ul class="reminders" id="reminders" aria-label="Reminders"></ul>
+      </section>
+    </main>
+
+    <!-- Bottom dock on phone (thumb reach); dissolves into the page grid on laptop -->
+    <div class="dock">
+      <nav class="day-strip" aria-label="Choose a day">
+        <ol id="day-list"></ol>
+      </nav>
+
+      <!-- Location controls: in the bottom dock on phone, top right on laptop -->
+      <div class="location-controls">
+        <div class="city-switch" role="group" aria-label="Saved locations" id="city-switch"></div>
+        <button type="button" class="icon-button" id="change-location" aria-label="Change location">
+          <img src="assets/icons/edit.webp" alt="" width="24" height="24">
+        </button>
+      </div>
+
+      <footer class="app-footer">
+        <button type="button" class="link-button" id="open-credits">Credits</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Change location: bottom sheet on phone, dropdown on laptop (search wired up in CP6) -->
+  <dialog class="sheet" id="location-sheet" aria-labelledby="sheet-title">
+    <div class="sheet-handle" aria-hidden="true"></div>
+    <div class="dialog-header">
+      <h2 id="sheet-title">Replace “—”</h2>
+      <button type="button" class="icon-button" data-close aria-label="Close">
+        <img src="assets/icons/close.webp" alt="" width="24" height="24">
+      </button>
+    </div>
+    <label class="visually-hidden" for="location-search">US city or ZIP</label>
+    <input type="search" id="location-search" placeholder="US city or ZIP" autocomplete="off">
+    <button type="button" class="use-location" id="use-location">
+      <img src="assets/icons/location.webp" alt="" width="24" height="24">
+      Use my location
+    </button>
+    <p class="sheet-message" id="sheet-message" role="status"></p>
+    <h3 class="results-label">Results</h3>
+    <ul class="results" id="results"></ul>
+  </dialog>
+
+  <dialog class="popup" id="credits" aria-labelledby="credits-title">
+    <div class="dialog-header">
+      <h2 id="credits-title">Credits</h2>
+      <button type="button" class="icon-button" data-close aria-label="Close">
+        <img src="assets/icons/close.webp" alt="" width="24" height="24">
+      </button>
+    </div>
+    <div class="credits-body">
+      <p>Credits content is added in CP8.</p>
+    </div>
+  </dialog>
+</body>
+</html>
