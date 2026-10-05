@@ -51,8 +51,6 @@ Draw every proposed screen by hand, in both phone and laptop layouts, on paper, 
 
 Translate every fixed brief requirement and the selected research-driven feature into a testable requirement. Define the chosen behavior, content, controls, current and forecast data, responsive layout, accessibility, error handling, privacy, credits, and deployment. The main screen should make clear the location, date, units, data source, and whether conditions are current or forecast. Include an acceptance check for each requirement.
 
-DRAFT, awaiting Developer review.
-
 | # | Requirement | Acceptance check |
 |---|---|---|
 | R1 | **Live weather.** Current and 7-day forecast data (today plus 6 days) comes from Open-Meteo. No values are hard-coded. | The values shown match an Open-Meteo API response for the same coordinates and time. |
@@ -139,8 +137,6 @@ Define at least three outfit variations for each recommendation category and at 
 
 List every art and graphical asset: the character, each outfit variation, icons, and any other visuals. For each, note where it appears, its format, and whether it will be created, generated, or licensed, with its credit or license.
 
-DRAFT.
-
 | Asset | Count | Where | Format | Source |
 |---|---|---|---|---|
 | Character in each outfit (IDs in Content variation) | 15 | Main screen | PNG or WebP, transparent background | AI-generated (tool still to be chosen; credited in R11) |
@@ -180,8 +176,6 @@ The UI icons (edit, location, close, checkmark) are small and functional. If the
 
 Record features intentionally excluded from this project.
 
-DRAFT.
-
 - Locations outside the US.
 - °C and other unit options (°F only).
 - Hourly forecast view, and forecasts beyond 7 days.
@@ -198,6 +192,8 @@ After implementation or testing, record requirement changes and the evidence tha
 ## Approval
 
 The Developer reviews and explicitly approves this specification and its screen designs before planning begins.
+
+**Approved by the Developer on 2026-10-05.**
 
 ## Saving the transcript
 
