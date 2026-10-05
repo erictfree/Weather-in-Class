@@ -41,7 +41,9 @@ Draw every proposed screen by hand, in both phone and laptop layouts, on paper, 
 
 **Credits:** a popup, the same in both layouts.
 
-**Still to place:** loading and error states, and the data-source label.
+**Data source:** named in the Credits popup only. The Developer decided not to show it on the main screen, even though the spec template asks for it there.
+
+**Still to place:** loading and error states.
 
 **Deliberate change from the brief:** the brief says to save only the most recent location. The Developer has chosen the two-city switch as the additional feature, so two locations are saved on the device.
 
