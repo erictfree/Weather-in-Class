@@ -67,6 +67,12 @@ Define the weather inputs, recommendation categories, coded rules, and shared st
 
 Every day, today included, uses the daily maximum feels-like temperature to choose the group. **Layer note:** if the lower of the current and daily-minimum feels-like temperatures falls in a colder group than the chosen one, the clothing description adds a short note to bring a layer, for example "Cool morning, bring a layer." On forecast days only the daily minimum is used.
 
+**Reminders.**
+
+| Reminder | Trigger | Input (today / forecast day) | Basis |
+|---|---|---|---|
+| Umbrella | Rain chance 40% or higher | Highest hourly precipitation probability from now to midnight / daily maximum precipitation probability | Product decision; there is no official cut-off (`research.md`) |
+
 ## Content variation
 
 Define at least three outfit variations for each recommendation category and at least three wording variations for each reminder type. Define how outfit and reminder variations are chosen independently at random, and how a previously selected date keeps the same variations, including whether they persist after the page reloads.
