@@ -46,10 +46,4 @@ When the Developer directs the Agent to save the transcript, save the entire cur
 
 # Project
 
-Static site with no build step (plain HTML, CSS and JavaScript modules).
-
-- Run locally: `python3 -m http.server 8000` in the repo root, then open http://localhost:8000. Opening `index.html` directly doesn't work, because browsers block JavaScript modules from `file://`.
-- Layout: phone below 900px, laptop at 900px and above (`css/styles.css`).
-- Code: `js/ui.js` draws everything from one state object. `js/weather.js` fetches Open-Meteo and returns one record per day; `js/content.js` maps weather codes to icons. `js/rules.js` holds the outfit-group and reminder rules. `js/state.js` builds the single recommendation state and keeps variation picks per location and date for the visit; `js/main.js` holds the selection and redraws. Dev check: edit `window.appState` in the console, then run `window.render()`.
-- Test: `npm test` (Node 18+, no dependencies) runs the rule tests in `tests/`.
-- Art: `assets/characters/<outfit-id>.webp` and `assets/icons/<name>.webp`.
+Fill in as the project takes shape: how to run it locally, how to test it, and any commands or structure that aren't obvious from the code.
