@@ -83,6 +83,35 @@ Define at least three outfit variations for each recommendation category and at 
 
 **Memory.** Picks are remembered in memory for each location and date during the current visit, so going back to a date shows the same variations. Nothing is written to storage. A page reload picks fresh variations (Developer decision).
 
+**Outfits** (DRAFT, awaiting Developer review). Each outfit is one character image. The text becomes the clothing description.
+
+| Group | ID | Outfit |
+|---|---|---|
+| Hot | hot-1 | Graphic tee, athletic shorts, slide sandals |
+| Hot | hot-2 | Tank top, denim shorts, low-top sneakers, sunglasses |
+| Hot | hot-3 | Loose linen button-up, chino shorts, canvas sneakers, cap |
+| Warm | warm-1 | Plain tee, light jeans, white sneakers |
+| Warm | warm-2 | Polo shirt, chino shorts, canvas sneakers |
+| Warm | warm-3 | Striped tee, joggers, running shoes |
+| Mild | mild-1 | Long-sleeve tee, jeans, sneakers |
+| Mild | mild-2 | Flannel shirt open over a tee, chinos, sneakers |
+| Mild | mild-3 | Light crewneck sweatshirt, joggers, sneakers |
+| Cool | cool-1 | Hoodie, denim jacket, jeans, sneakers |
+| Cool | cool-2 | Knit sweater, light puffer vest, chinos, boots |
+| Cool | cool-3 | Quarter-zip pullover, bomber jacket, jeans, sneakers |
+| Cold | cold-1 | Long puffer coat, beanie, scarf, jeans, winter boots |
+| Cold | cold-2 | Wool peacoat, knit hat, gloves, thick sweater, boots |
+| Cold | cold-3 | Parka with hood, fleece layer, joggers, insulated boots |
+
+**Reminder and note wordings** (DRAFT, awaiting Developer review).
+
+| Type | Wording 1 | Wording 2 | Wording 3 |
+|---|---|---|---|
+| Umbrella | Rain's likely. Grab an umbrella. | Umbrella day. Don't get caught between classes. | Showers in the forecast. Pack an umbrella. |
+| Sunscreen | UV is up. Put on sunscreen (SPF 30+). | Sunscreen before you head out. | Strong sun today. SPF 30+ is a good call. |
+| Hydration | It's a hot one. Bring a water bottle. | Stay hydrated. Fill up your bottle. | Heat's on. Keep water with you. |
+| Layer note | Cooler at the start or end of the day. Bring a layer. | It'll feel colder for part of the day. Pack an extra layer. | Chilly hours ahead. Throw a layer in your bag. |
+
 ## Assets
 
 List every art and graphical asset: the character, each outfit variation, icons, and any other visuals. For each, note where it appears, its format, and whether it will be created, generated, or licensed, with its credit or license.
