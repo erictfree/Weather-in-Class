@@ -16,3 +16,68 @@ export const ICON_LABELS = {
   clear: "Clear", "partly-cloudy": "Partly cloudy", cloudy: "Cloudy", fog: "Fog",
   rain: "Rain", snow: "Snow", thunderstorm: "Thunderstorm",
 };
+
+// Outfits (spec.md, Content variation). Each id matches assets/characters/<id>.webp.
+export const OUTFITS = {
+  hot: [
+    { id: "hot-1", text: "Graphic tee, athletic shorts, slide sandals" },
+    { id: "hot-2", text: "Tank top, denim shorts, low-top sneakers, sunglasses" },
+    { id: "hot-3", text: "Loose linen button-up, chino shorts, canvas sneakers, cap" },
+  ],
+  warm: [
+    { id: "warm-1", text: "Plain tee, light jeans, white sneakers" },
+    { id: "warm-2", text: "Polo shirt, chino shorts, canvas sneakers" },
+    { id: "warm-3", text: "Striped tee, joggers, running shoes" },
+  ],
+  mild: [
+    { id: "mild-1", text: "Long-sleeve tee, jeans, sneakers" },
+    { id: "mild-2", text: "Flannel shirt open over a tee, chinos, sneakers" },
+    { id: "mild-3", text: "Light crewneck sweatshirt, joggers, sneakers" },
+  ],
+  cool: [
+    { id: "cool-1", text: "Hoodie, denim jacket, jeans, sneakers" },
+    { id: "cool-2", text: "Knit sweater, light puffer vest, chinos, boots" },
+    { id: "cool-3", text: "Quarter-zip pullover, bomber jacket, jeans, sneakers" },
+  ],
+  cold: [
+    { id: "cold-1", text: "Long puffer coat, beanie, scarf, jeans, winter boots" },
+    { id: "cold-2", text: "Wool peacoat, knit hat, gloves, thick sweater, boots" },
+    { id: "cold-3", text: "Parka with hood, fleece layer, joggers, insulated boots" },
+  ],
+};
+
+// Reminder and layer-note wordings (spec.md), with the icon each one shows.
+export const MESSAGES = {
+  umbrella: {
+    icon: "umbrella",
+    wordings: [
+      "Rain's likely. Grab an umbrella.",
+      "Umbrella day. Don't get caught between classes.",
+      "Showers in the forecast. Pack an umbrella.",
+    ],
+  },
+  sunscreen: {
+    icon: "sunscreen",
+    wordings: [
+      "UV is up. Put on sunscreen (SPF 30+).",
+      "Sunscreen before you head out.",
+      "Strong sun today. SPF 30+ is a good call.",
+    ],
+  },
+  hydration: {
+    icon: "water",
+    wordings: [
+      "Strong sun or heat today. Bring a water bottle.",
+      "Stay hydrated. Fill up your bottle.",
+      "Long day in the sun or heat? Keep water with you.",
+    ],
+  },
+  layer: {
+    icon: "layer",
+    wordings: [
+      "Cooler at the start or end of the day. Bring a layer.",
+      "It'll feel colder for part of the day. Pack an extra layer.",
+      "Chilly hours ahead. Throw a layer in your bag.",
+    ],
+  },
+};

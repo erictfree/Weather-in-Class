@@ -29,11 +29,15 @@ export function render(state, handlers = {}) {
       <div><dt>Wind</dt><dd>${weather.wind} mph</dd></div>
     </dl>`;
 
-  // Character, description and alt text all come from the same outfit pick
-  const character = $("character");
-  character.src = `assets/characters/${outfit.id}.webp`;
-  character.alt = `Character wearing ${outfit.text.toLowerCase()}`;
-  $("description").textContent = outfit.text + (layerNote ? ` ${layerNote}` : "");
+  // Character, description and alt text all come from the same outfit pick.
+  // No outfit means the key data is missing: the recommendation stays hidden (R12).
+  document.querySelector(".outfit").hidden = !outfit;
+  if (outfit) {
+    const character = $("character");
+    character.src = `assets/characters/${outfit.id}.webp`;
+    character.alt = `Character wearing ${outfit.text.toLowerCase()}`;
+    $("description").textContent = `${outfit.text}.${layerNote ? ` ${layerNote}` : ""}`;
+  }
 
   $("reminders").innerHTML = reminders
     .map((r) => `<li>${icon(r.icon)}<span>${r.text}</span></li>`)
