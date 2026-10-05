@@ -150,7 +150,7 @@ DRAFT.
 
 All icons are AI-generated (Developer decision). Every icon has a text label or accessible name next to it (R15), so its meaning never depends on the image alone. Icons must stay legible at their smallest display size (about 24px) and meet 3:1 contrast against their background.
 
-**Icon prompts** (DRAFT). Start every prompt with the shared style prompt, then add the line for that icon. Generate the icons in one session where the tool allows it, and reuse the first good result as a style reference, so the set stays consistent.
+**Icon prompts** (approved by the Developer). Start every prompt with the shared style prompt, then add the line for that icon. Generate the icons in one session where the tool allows it, and reuse the first good result as a style reference, so the set stays consistent.
 
 *Shared style prompt:* "Single app icon, 3D cartoon style like a modern animated film, soft rounded shapes, smooth matte shading, simple bold silhouette that reads clearly at 24 pixels, centered, front view, no text, no background, transparent background, square 1:1."
 
