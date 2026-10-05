@@ -79,6 +79,10 @@ Every day, today included, uses the daily maximum feels-like temperature to choo
 
 Define at least three outfit variations for each recommendation category and at least three wording variations for each reminder type. Define how outfit and reminder variations are chosen independently at random, and how a previously selected date keeps the same variations, including whether they persist after the page reloads.
 
+**Selection.** Each output picks its variation independently at random from the eligible options: the outfit (within its group), the wording for each active reminder, and the wording for the layer note. Outfits and reminders are never paired.
+
+**Memory.** Picks are remembered in memory for each location and date during the current visit, so going back to a date shows the same variations. Nothing is written to storage. A page reload picks fresh variations (Developer decision).
+
 ## Assets
 
 List every art and graphical asset: the character, each outfit variation, icons, and any other visuals. For each, note where it appears, its format, and whether it will be created, generated, or licensed, with its credit or license.
