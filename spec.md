@@ -51,7 +51,7 @@ Draw every proposed screen by hand, in both phone and laptop layouts, on paper, 
 
 Translate every fixed brief requirement and the selected research-driven feature into a testable requirement. Define the chosen behavior, content, controls, current and forecast data, responsive layout, accessibility, error handling, privacy, credits, and deployment. The main screen should make clear the location, date, units, data source, and whether conditions are current or forecast. Include an acceptance check for each requirement.
 
-DRAFT, awaiting Developer review. Items marked *(proposed)* are Agent suggestions that need a decision.
+DRAFT, awaiting Developer review.
 
 | # | Requirement | Acceptance check |
 |---|---|---|
@@ -68,8 +68,8 @@ DRAFT, awaiting Developer review. Items marked *(proposed)* are Agent suggestion
 | R10 | **Variations.** At least 3 outfits per group and 3 wordings per reminder or note, picked independently at random. Revisiting a location and date in the same visit shows the same picks. A reload may re-pick. | Over 20 loads of the same day, different outfit and wording combinations appear. Moving between dates and back keeps the picks. |
 | R11 | **Credits / info popup.** Lists the creator; Open-Meteo with a link and CC BY 4.0 attribution; the recommendation methods and sources (EPA, NWS, product decisions); privacy practices; and art credits, including the AI tool used. | Open it on phone and laptop and check that every item is there. |
 | R12 | **Loading, missing data, errors.** Shown inside the weather card as described in Screen designs, with Retry and "Last updated [time]". | Throttle the network to see the loading state. Block the API to see the error and Retry. Restore the network and Retry recovers. |
-| R13 | **Responsive layout.** Phone and laptop layouts follow the v2 wireframe. *(proposed)* Switch at a 900px viewport width. | At 375px and 1280px widths, the layout matches the wireframe with no horizontal scrolling. |
-| R14 | **One-handed phone use.** The day strip, city switch and ✎ sit in the bottom third of the screen. *(proposed)* Touch targets are at least 44×44px. | On a real phone, every main control can be reached with the thumb of the holding hand. |
+| R13 | **Responsive layout.** Phone and laptop layouts follow the v2 wireframe. Switch at a 900px viewport width (Developer decision; revisit after testing). | At 375px and 1280px widths, the layout matches the wireframe with no horizontal scrolling. |
+| R14 | **One-handed phone use.** The day strip, city switch and ✎ sit in the bottom third of the screen. Touch targets are at least 44×44px (Developer decision). | On a real phone, every main control can be reached with the thumb of the holding hand. |
 | R15 | **Accessibility, WCAG 2.2 AA.** Contrast is at least 4.5:1 for text and 3:1 for UI. Nothing relies on colour alone. The character's alt text comes from the state (for example "Character wearing a hoodie, denim jacket, jeans and sneakers"). Everything works with a keyboard and focus is visible. Popups and sheets trap focus and close with Esc. Reminders are icon plus text. | Run an axe or Lighthouse accessibility check with no failures, plus a manual keyboard-only pass and a screen-reader spot check. |
 | R16 | **Privacy.** Location is sent only to Open-Meteo. Only the two location slots are stored on the device. No accounts, analytics or cookies. | In dev tools, network requests go only to Open-Meteo and the site's own host, and `localStorage` holds only the location data. |
 | R17 | **Deployment.** The app is served over HTTPS from GitHub Pages. | The public URL loads on a real phone and a laptop. |
