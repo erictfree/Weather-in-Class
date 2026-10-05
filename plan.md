@@ -61,6 +61,8 @@ Summarize the structure, data flow, dependencies, task order, and main risks.
 
 - [ ] Create or source the assets listed in `spec.md`, starting early
   - [ ] Developer chooses the AI image tool; style test of 2–3 character images and 2 icons, approved by the Developer
+  - [x] Test character set: 15 outfits generated with ChatGPT, background removed, saved as WebP in `assets/characters/` (about 40 KB each)
+  - [ ] Regenerate the character set to read as a college-age young adult (Developer), then reprocess
   - [ ] All 15 outfit images and 15 icons generated, exported as transparent PNG or WebP, saved in `assets/`, and the tool recorded for credits
 - [ ] **CP1 Layout shell:** `index.html` and CSS match the v2 wireframe with fake data and placeholder art. The phone layout is below 900px and the laptop layout is at 900px and above. Check: R13 at 375px and 1280px with no horizontal scroll, and R14 control placement and 44px targets.
 - [ ] **CP2 Live weather:** `weather.js` fetches current, hourly and 7-day daily data in °F and mph and fills the weather card. Check: R1 against a raw API response for the same coordinates.
@@ -105,6 +107,7 @@ Before testing, record the purpose, a few realistic tasks, non-leading prompts, 
 
 Record material plan changes and why they were made.
 
+- **2026-10-05:** ChatGPT chosen as the image tool. The first character set is used as test art so the build isn't blocked; regeneration added to the asset tasks.
 - **2026-10-05:** Checked Open-Meteo geocoding directly: "78701" finds Austin, TX, and `countryCode=US` limits "London" to US towns, so the ZIP-search risk is removed. Reverse geocoding is unavailable; resolved by the R3 revision in `spec.md`.
 
 ## Saving transcripts

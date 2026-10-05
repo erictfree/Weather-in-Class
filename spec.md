@@ -139,7 +139,7 @@ List every art and graphical asset: the character, each outfit variation, icons,
 
 | Asset | Count | Where | Format | Source |
 |---|---|---|---|---|
-| Character in each outfit (IDs in Content variation) | 15 | Main screen | PNG or WebP, transparent background | AI-generated (tool still to be chosen; credited in R11) |
+| Character in each outfit (IDs in Content variation) | 15 | Main screen | WebP, 600×900, transparent background, in `assets/characters/<id>.webp` | AI-generated with ChatGPT (OpenAI); background removed with rembg. **Current set is test art, to be regenerated** (see Revisions). Credited in R11. |
 | Weather icons: clear, partly cloudy, cloudy, fog, rain, snow, thunderstorm | 7 | Weather card, day strip | PNG or WebP, transparent background, exported at 2× | AI-generated, same tool and style as the character |
 | Reminder icons: umbrella, sunscreen, water, layer | 4 | Reminder row | PNG or WebP, transparent background, exported at 2× | AI-generated, same tool and style as the character |
 | UI icons: edit ✎, location crosshair, close ×, checkmark | 4 | Controls | PNG or WebP, transparent background, exported at 2× | AI-generated, same tool and style as the character |
@@ -189,6 +189,7 @@ Record features intentionally excluded from this project.
 
 After implementation or testing, record requirement changes and the evidence that prompted them. Update the screen drawings when a material layout or interaction changes.
 
+- **2026-10-05 (planning):** First character set generated with ChatGPT and adopted as **test art only**. All 15 outfits match their descriptions and the character is consistent, but it reads as an early teen rather than a college student. The Developer will regenerate the set before final delivery. The icons have not been generated yet; using ChatGPT for them too would keep the style matched.
 - **2026-10-05 (planning):** R3 changed. Open-Meteo has no reverse geocoding: `/v1/reverse` returns 404, and its documentation lists only `/v1/search` and `/v1/get`. Without it, device coordinates can't be turned into a place name or checked against the US. The Developer decided that device location is assumed to be in the US, with no check, and is labelled "My location". Typed searches stay US-only (R2). This keeps location data going only to Open-Meteo (R16).
 
 ## Approval
