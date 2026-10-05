@@ -43,7 +43,7 @@ Draw every proposed screen by hand, in both phone and laptop layouts, on paper, 
 
 **Data source:** named in the Credits popup only. The Developer decided not to show it on the main screen, even though the spec template asks for it there.
 
-**Still to place:** loading and error states.
+**Loading and errors:** these appear inside the weather card. While data loads, the card shows "Loading…". On a service error or missing data, it shows a plain-language message and a **Retry** button. The character, clothing description and reminders stay hidden until there is valid data. If older data is still on screen, for example after a failed refresh, the card shows "Last updated [time]".
 
 **Deliberate change from the brief:** the brief says to save only the most recent location. The Developer has chosen the two-city switch as the additional feature, so two locations are saved on the device.
 
