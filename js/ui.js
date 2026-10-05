@@ -15,7 +15,7 @@ export function render(state, handlers = {}) {
   const selectedDay = days.find((d) => d.date === selectedDate);
 
   // Header: place, date, units (R7)
-  $("place").textContent = location.name;
+  $("place").textContent = placeName(location);
   $("context").textContent = `${selectedDay.isToday ? "Today · " : ""}${selectedDay.longDate} · °F`;
 
   // Weather card, labelled current or forecast (R7)
@@ -60,14 +60,7 @@ export function render(state, handlers = {}) {
       </li>`)
     .join("");
 
-  // City switch: two slots, the empty one reads "+ Add city" (R5, R5a)
-  $("city-switch").innerHTML = state.slots
-    .map((slot, i) => slot
-      ? `<button type="button" class="city" data-slot="${i}" aria-pressed="${i === state.activeSlot}">${slot.name}</button>`
-      : `<button type="button" class="city add" data-slot="${i}">+ Add city</button>`)
-    .join("");
-
-  $("sheet-title").textContent = `Replace “${location.name}”`;
+  renderCitySwitch(state.slots, state.activeSlot);
 
   // Keep the selected day visible in the sideways strip (phone), and give focus
   // back to the control the keyboard user was on.
@@ -77,6 +70,32 @@ export function render(state, handlers = {}) {
   if (focusedIn === "city-switch") document.querySelector('.city[aria-pressed="true"]')?.focus();
   updateStripFade();
 
+  wire(handlers);
+}
+
+export const placeName = (loc) => (loc.region ? `${loc.name}, ${loc.region}` : loc.name);
+
+// City switch: two slots; an empty one reads "+ Add city" (R5, R5a).
+function renderCitySwitch(slots, activeSlot) {
+  $("city-switch").innerHTML = slots
+    .map((slot, i) => slot
+      ? `<button type="button" class="city" data-slot="${i}" aria-pressed="${i === activeSlot}"
+           aria-label="${placeName(slot)}">${slot.name}</button>`
+      : `<button type="button" class="city add" data-slot="${i}">+ Add city</button>`)
+    .join("");
+}
+
+// First visit, before any location is chosen: prompt instead of weather.
+export function renderEmpty(slots, handlers) {
+  $("place").textContent = "Weather in Class";
+  $("context").textContent = "What to wear, from the forecast";
+  $("card-label").textContent = "No location yet";
+  $("card-body").innerHTML = `<p class="card-message">Choose a US city, ZIP or your location to see the weather.</p>
+    <button type="button" class="card-action" id="choose-first">Choose a location</button>`;
+  $("choose-first").addEventListener("click", () => handlers.onChangeLocation?.());
+  document.querySelector(".outfit").hidden = true;
+  $("day-list").innerHTML = "";
+  renderCitySwitch(slots, 0);
   wire(handlers);
 }
 
@@ -96,14 +115,13 @@ function wire(handlers) {
   const strip = document.querySelector(".day-strip");
   strip.addEventListener("scroll", updateStripFade, { passive: true });
   window.addEventListener("resize", updateStripFade);
-  $("change-location").addEventListener("click", () => $("location-sheet").showModal());
-  $("open-credits").addEventListener("click", () => $("credits").showModal());
-  // Close buttons and backdrop clicks close dialogs; Esc is handled by <dialog>.
-  for (const dialog of document.querySelectorAll("dialog")) {
-    dialog.addEventListener("click", (e) => {
-      if (e.target === dialog || e.target.closest("[data-close]")) dialog.close();
-    });
-  }
+  $("change-location").addEventListener("click", () => handlers.onChangeLocation?.());
+  const credits = $("credits");
+  $("open-credits").addEventListener("click", () => credits.showModal());
+  // Close button and backdrop click; Esc is handled by <dialog>.
+  credits.addEventListener("click", (e) => {
+    if (e.target === credits || e.target.closest("[data-close]")) credits.close();
+  });
 }
 
 // Mark which sides of the day strip have more days off screen (drives the fade hint).
