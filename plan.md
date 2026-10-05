@@ -26,7 +26,7 @@ During implementation, follow the approved plan in working checkpoints and keep 
 
 Summarize the structure, data flow, dependencies, task order, and main risks.
 
-**Structure (proposed, needs Developer approval).** A static site with no build step: `index.html`, one stylesheet, and plain JavaScript modules. GitHub Pages serves the files as they are, so there is no bundler, `node_modules` or build output to manage. Modules:
+**Structure (Developer approved: plain files, no build step).** A static site with no build step: `index.html`, one stylesheet, and plain JavaScript modules. GitHub Pages serves the files as they are, so there is no bundler, `node_modules` or build output to manage. Modules:
 
 - `weather.js`: calls Open-Meteo for forecast and geocoding and turns each response into one record per day. All times use the location's own timezone (`timezone=auto`).
 - `rules.js`: pure functions for the outfit group, the layer note and the reminders, using the thresholds in `spec.md`. It has no DOM or network code, so the boundary values can be tested directly.
