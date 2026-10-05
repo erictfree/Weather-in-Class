@@ -9,7 +9,7 @@ const icon = (name, alt = "") =>
   `<img src="assets/icons/${name}.webp" alt="${alt}" width="64" height="64">`;
 
 export function render(state, handlers = {}) {
-  const { location, days, selectedDate, weather, outfit, reminders, layerNote } = state;
+  const { location, days, selectedDate, weather, outfit, reminders } = state;
   // The strip and city switch are rebuilt below; remember which one had keyboard focus.
   const focusedIn = document.activeElement?.closest("#day-list, #city-switch")?.id;
   const selectedDay = days.find((d) => d.date === selectedDate);
@@ -38,7 +38,7 @@ export function render(state, handlers = {}) {
     const character = $("character");
     character.src = `assets/characters/${outfit.id}.webp`;
     character.alt = `Character wearing ${outfit.text.toLowerCase()}`;
-    $("description").textContent = `${outfit.text}.${layerNote ? ` ${layerNote}` : ""}`;
+    $("description").textContent = `${outfit.text}.`;
   }
 
   $("reminders").innerHTML = reminders

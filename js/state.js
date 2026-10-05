@@ -56,7 +56,7 @@ export function buildState({ location, forecast, selectedDate, pick, slots, acti
     weather: weatherFor(forecast, day),
     group: rec.group,
     outfit,
-    layerNote: rec.layerNote ? message("layer").text : "",
-    reminders: rec.reminders.map(message),
+    // The layer note shows as its own chip in the reminder row, after the reminders.
+    reminders: [...rec.reminders, ...(rec.layerNote ? ["layer"] : [])].map(message),
   };
 }

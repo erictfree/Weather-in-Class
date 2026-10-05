@@ -61,13 +61,13 @@ export const MESSAGES = {
     wordings: [
       "UV is up. Put on sunscreen (SPF 30+).",
       "Sunscreen before you head out.",
-      "Strong sun today. SPF 30+ is a good call.",
+      "Strong sun. SPF 30+ is a good call.",
     ],
   },
   hydration: {
     icon: "water",
     wordings: [
-      "Strong sun or heat today. Bring a water bottle.",
+      "Strong sun or heat. Bring a water bottle.",
       "Stay hydrated. Fill up your bottle.",
       "Long day in the sun or heat? Keep water with you.",
     ],

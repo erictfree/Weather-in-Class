@@ -66,6 +66,15 @@ test("a fresh visit (reload) can pick different variations", () => {
   assert.equal(outfits.size, 3);
 });
 
+test("layer note shows as the last chip in the reminder row", () => {
+  const chilly = structuredClone(forecast);
+  chilly.days[1].feelsMin = 50; // hot day with a cool low
+  const s = buildState({ location: austin, forecast: chilly, selectedDate: "2026-10-06", pick: createPicker(), slots: [], activeSlot: 0 });
+  assert.deepEqual(s.reminders.map((r) => r.type), ["umbrella", "sunscreen", "hydration", "layer"]);
+  assert.equal(s.reminders.at(-1).icon, "layer");
+  assert.ok(MESSAGES.layer.wordings.includes(s.reminders.at(-1).text));
+});
+
 test("missing feels-like data gives no outfit", () => {
   const broken = structuredClone(forecast);
   broken.days[0].feelsMax = null;
