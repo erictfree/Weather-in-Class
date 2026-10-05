@@ -48,7 +48,7 @@ Summarize the structure, data flow, dependencies, task order, and main risks.
 - **Consistent character art.** All 15 outfit images must show the same character. Run a 2–3 image style test before committing to a tool.
 - **Icon contrast.** The white and pale-grey icons (cloudy, fog, snow, partly cloudy) nearly vanish on a white background at 24px. The weather card and day strip need a tinted or darker background for the 3:1 contrast in R15. Settle this at CP1 and check it at CP10.
 - **"Today" across timezones.** The date and the "now to midnight" rain window must use the location's timezone, not the device's. Test with a location in a different timezone.
-- **Deployment branch.** Pages has to serve from `main` (or a Pages workflow), so finished work needs merging into `main`. That merge is the Developer's decision.
+- **Deployment branch.** Pages has to serve from `main` (or a Pages workflow), so finished work needs merging into `main`. The Developer has authorized the Agent to merge into `main` as needed (2026-10-05).
 
 ## Checklist
 
