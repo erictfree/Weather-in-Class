@@ -132,9 +132,9 @@ Once the recommendation categories are chosen, estimate the art needed: the char
 - **Forecast range:** 7 days (today + next 6 days), well within Open-Meteo's supported forecast window. Matches typical weather-app conventions and covers most trip/event planning without stretching into low-confidence long-range forecasts.
 - **Artwork approach:** AI-generated (tool TBD during asset creation).
 - **Deployment:** GitHub Pages.
-- **Recommendation categories:** top, bottom, footwear, outerwear. Each needs at least 3 variations per the brief.
+- **Recommendation categories:** weather-based groups (e.g. Hot, Warm, Mild, Cool, Cold), each with at least 3 complete outfit variations drawn on the character, per the brief. Exact groups and thresholds are defined in `spec.md`.
 - **Reminder categories:** umbrella (rain), sunscreen (UV), hydration (heat) — the three examples named directly in the brief. Each needs at least 3 wording variations per the brief.
-- **Art estimate:** 1 base character + up to 4 categories × 3 variations = up to 12 clothing-art pieces, plus weather icons (sun/cloud/rain/snow, etc.) and reminder icons (umbrella, sunscreen, water). Confirms AI-generated art is the right call above — 12+ clothing pieces plus icons is a lot to commission or hand-draw within the project timeline.
+- **Art estimate:** about 5 weather groups × 3 complete outfits = about 15 character images, plus weather icons (sun/cloud/rain/snow, etc.) and reminder icons (umbrella, sunscreen, water). Confirms AI-generated art is the right call above — 12+ clothing pieces plus icons is a lot to commission or hand-draw within the project timeline.
 - **Visual direction:** cartoon, Pixar-style 3D-ish illustration. Detailed screen structure and layout deferred to `spec.md`, defined from hand-drawn screens once drawn.
 - **Additional feature:** quick two-location switch — lets the User flip between two saved locations (e.g. home town and campus) without re-entering one each time. Directly answers user story #5 (splitting time between two places), which the brief's "save only the most recent location" requirement doesn't cover on its own.
 
@@ -143,6 +143,7 @@ Once the recommendation categories are chosen, estimate the art needed: the char
 Record new evidence or changed decisions and explain why they changed.
 
 - **2026-10-05:** Corrected the additional-feature reference to user story #5 (there are five stories), removed an unsourced claim that Stylix and Wearther support multiple locations, and reworded the art-estimate timeline note. No decisions changed.
+- **2026-10-05 (spec stage):** Changed recommendation categories from clothing slots (top/bottom/footwear/outerwear) to weather-based groups with complete outfits. This is a closer reading of the brief's "three outfit variations for each recommendation category", and it avoids layering separate AI-generated clothing pieces. The art estimate is updated to match.
 
 ## Approval
 
