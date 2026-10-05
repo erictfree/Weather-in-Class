@@ -29,6 +29,8 @@ Draw every proposed screen by hand, in both phone and laptop layouts, on paper, 
 - [Hand sketch, v1](reference/screens-v1-sketch.jpg): phone, desktop and credits.
 - [Wireframe, v2](reference/screens-v2-wireframe.png) ([SVG](reference/screens-v2-wireframe.svg)): redrawn from the sketch with a revised location control and date picker.
 
+**The Developer chose v2 as the layout the build follows.** v1 remains the original hand drawing that v2 is based on.
+
 **Main screen, phone (top to bottom):** header with the active place, the date and units (read-only); a weather card labelled current or forecast, showing an icon, the temperature, feels like, humidity and wind; the character; the clothing description; the reminder row; the 7-day strip, which scrolls sideways; the two-city switch and the ✎ Change button, within thumb reach; and a Credits link.
 
 **Main screen, laptop:** the header is at top left, with the two-city switch and ✎ at top right; all 7 days show in a full-width row; the weather card is on the left and the character is on the right, with the clothing description and reminder row under the character; Credits is at the bottom.
