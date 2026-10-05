@@ -51,6 +51,28 @@ Draw every proposed screen by hand, in both phone and laptop layouts, on paper, 
 
 Translate every fixed brief requirement and the selected research-driven feature into a testable requirement. Define the chosen behavior, content, controls, current and forecast data, responsive layout, accessibility, error handling, privacy, credits, and deployment. The main screen should make clear the location, date, units, data source, and whether conditions are current or forecast. Include an acceptance check for each requirement.
 
+DRAFT, awaiting Developer review. Items marked *(proposed)* are Agent suggestions that need a decision.
+
+| # | Requirement | Acceptance check |
+|---|---|---|
+| R1 | **Live weather.** Current and 7-day forecast data (today plus 6 days) comes from Open-Meteo. No values are hard-coded. | The values shown match an Open-Meteo API response for the same coordinates and time. |
+| R2 | **Manual location.** In Change location, the User searches by US city or ZIP using Open-Meteo geocoding. Only US results are listed. | "Austin" and "78701" both find Austin, TX. "London" shows no UK result. |
+| R3 | **Device location.** "Use my location" asks for browser permission and uses the coordinates it returns. A location outside the US shows a message and the location is not used. | Allowing permission shows local weather. A non-US position shows the message. |
+| R4 | **Denied location.** If permission is denied or unavailable, a short message appears in the sheet and search still works. | Block location in the browser, tap "Use my location", see the message, then search successfully. |
+| R5 | **Two-city switch (additional feature).** Two location slots. ✎ replaces the selected slot. Switching takes one tap. Both slots and the active one are saved in `localStorage`. This is a deliberate change from the brief's single saved location. | Set Austin and LA, switch between them, reload: both are still there and the active one is the same. |
+| R6 | **Date selection.** A 7-day strip (swipe on phone, full row on laptop). Today is selected by default. The selected day is visibly marked by more than colour alone. | Choose each day: the header date, the card label and the recommendation all update. |
+| R7 | **Main-screen context.** The header shows the place, the date and °F. The weather card is labelled "Current conditions" for today and "Forecast" for other days. The data source appears in Credits only (Developer decision). | Check the header and card label on today and on a forecast day. |
+| R8 | **One recommendation state.** Location, date and weather data produce one state object (group, outfit pick, active reminders, wording picks, layer note). The character image, weather icon, clothing description, reminders and alt text all read from it. | In code review, no output computes its own rule. Change the state in dev tools: every output changes together. |
+| R9 | **Rules.** Outfit groups, the layer note and reminders follow the tables under Recommendation state. | Test inputs at each threshold boundary (for example 79/80°F, 39%/40%, UV 2/3, UV 7/8) give the expected output. |
+| R10 | **Variations.** At least 3 outfits per group and 3 wordings per reminder or note, picked independently at random. Revisiting a location and date in the same visit shows the same picks. A reload may re-pick. | Over 20 loads of the same day, different outfit and wording combinations appear. Moving between dates and back keeps the picks. |
+| R11 | **Credits / info popup.** Lists the creator; Open-Meteo with a link and CC BY 4.0 attribution; the recommendation methods and sources (EPA, NWS, product decisions); privacy practices; and art credits, including the AI tool used. | Open it on phone and laptop and check that every item is there. |
+| R12 | **Loading, missing data, errors.** Shown inside the weather card as described in Screen designs, with Retry and "Last updated [time]". | Throttle the network to see the loading state. Block the API to see the error and Retry. Restore the network and Retry recovers. |
+| R13 | **Responsive layout.** Phone and laptop layouts follow the v2 wireframe. *(proposed)* Switch at a 900px viewport width. | At 375px and 1280px widths, the layout matches the wireframe with no horizontal scrolling. |
+| R14 | **One-handed phone use.** The day strip, city switch and ✎ sit in the bottom third of the screen. *(proposed)* Touch targets are at least 44×44px. | On a real phone, every main control can be reached with the thumb of the holding hand. |
+| R15 | **Accessibility, WCAG 2.2 AA.** Contrast is at least 4.5:1 for text and 3:1 for UI. Nothing relies on colour alone. The character's alt text comes from the state (for example "Character wearing a hoodie, denim jacket, jeans and sneakers"). Everything works with a keyboard and focus is visible. Popups and sheets trap focus and close with Esc. Reminders are icon plus text. | Run an axe or Lighthouse accessibility check with no failures, plus a manual keyboard-only pass and a screen-reader spot check. |
+| R16 | **Privacy.** Location is sent only to Open-Meteo. Only the two location slots are stored on the device. No accounts, analytics or cookies. | In dev tools, network requests go only to Open-Meteo and the site's own host, and `localStorage` holds only the location data. |
+| R17 | **Deployment.** The app is served over HTTPS from GitHub Pages. | The public URL loads on a real phone and a laptop. |
+
 ## Recommendation state and data flow
 
 Define the weather inputs, recommendation categories, coded rules, and shared state. Weather values must come from the provider, and rules must follow the weather guidance cited in `research.md`. The selected location, date, and live weather data must produce one recommendation state that drives every visual and written output.
@@ -83,7 +105,7 @@ Define at least three outfit variations for each recommendation category and at 
 
 **Memory.** Picks are remembered in memory for each location and date during the current visit, so going back to a date shows the same variations. Nothing is written to storage. A page reload picks fresh variations (Developer decision).
 
-**Outfits** (DRAFT, awaiting Developer review). Each outfit is one character image. The text becomes the clothing description.
+**Outfits** (approved by the Developer). Each outfit is one character image. The text becomes the clothing description.
 
 | Group | ID | Outfit |
 |---|---|---|
@@ -103,7 +125,7 @@ Define at least three outfit variations for each recommendation category and at 
 | Cold | cold-2 | Wool peacoat, knit hat, gloves, thick sweater, boots |
 | Cold | cold-3 | Parka with hood, fleece layer, joggers, insulated boots |
 
-**Reminder and note wordings** (DRAFT, awaiting Developer review).
+**Reminder and note wordings** (approved by the Developer).
 
 | Type | Wording 1 | Wording 2 | Wording 3 |
 |---|---|---|---|
@@ -116,9 +138,29 @@ Define at least three outfit variations for each recommendation category and at 
 
 List every art and graphical asset: the character, each outfit variation, icons, and any other visuals. For each, note where it appears, its format, and whether it will be created, generated, or licensed, with its credit or license.
 
+DRAFT.
+
+| Asset | Count | Where | Format | Source |
+|---|---|---|---|---|
+| Character in each outfit (IDs in Content variation) | 15 | Main screen | PNG or WebP, transparent background | AI-generated (tool still to be chosen; credited in R11) |
+| Weather icons: clear, partly cloudy, cloudy, fog, rain, snow, thunderstorm | 7 | Weather card, day strip | SVG | *(open)* |
+| Reminder icons: umbrella, sunscreen, water, layer | 4 | Reminder row | SVG | *(open)* |
+| UI icons: edit ✎, location crosshair, close ×, checkmark | 4 | Controls | SVG | *(open)* |
+
 ## Out of scope
 
 Record features intentionally excluded from this project.
+
+DRAFT.
+
+- Locations outside the US.
+- °C and other unit options (°F only).
+- Hourly forecast view, and forecasts beyond 7 days.
+- Accounts, a backend, analytics.
+- Push notifications.
+- The User's own wardrobe or clothing preferences.
+- Keeping variation picks after a reload.
+- Offline use beyond showing the last loaded data during a visit.
 
 ## Revisions
 
