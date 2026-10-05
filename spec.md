@@ -150,6 +150,32 @@ DRAFT.
 
 All icons are AI-generated (Developer decision). Every icon has a text label or accessible name next to it (R15), so its meaning never depends on the image alone. Icons must stay legible at their smallest display size (about 24px) and meet 3:1 contrast against their background.
 
+**Icon prompts** (DRAFT). Start every prompt with the shared style prompt, then add the line for that icon. Generate the icons in one session where the tool allows it, and reuse the first good result as a style reference, so the set stays consistent.
+
+*Shared style prompt:* "Single app icon, 3D cartoon style like a modern animated film, soft rounded shapes, smooth matte shading, simple bold silhouette that reads clearly at 24 pixels, centered, front view, no text, no background, transparent background, square 1:1."
+
+The style is described rather than naming Pixar: some tools refuse brand names, and a description gives more control.
+
+| Icon | Prompt line |
+|---|---|
+| Clear | A bright yellow sun with short rounded rays. |
+| Partly cloudy | A yellow sun partly behind a white puffy cloud. |
+| Cloudy | Two overlapping soft grey-white puffy clouds. |
+| Fog | A pale grey cloud with three horizontal wavy mist lines beneath it. |
+| Rain | A grey cloud with three blue teardrop raindrops falling below it. |
+| Snow | A grey-white cloud with three white snowflakes falling below it. |
+| Thunderstorm | A dark grey cloud with a yellow zigzag lightning bolt below it. |
+| Umbrella | An open red umbrella with a curved handle, tilted slightly. |
+| Sunscreen | An orange-and-white sunscreen squeeze bottle with a small sun symbol on it and no lettering. |
+| Water | A clear blue reusable water bottle with a cap, half full of water. |
+| Layer | A folded green zip-up jacket. |
+| Edit | A pencil, angled diagonally. |
+| Location | A navigation crosshair: a circle with a centre dot and four short ticks. |
+| Close | A bold rounded X mark. |
+| Checkmark | A bold rounded checkmark. |
+
+The UI icons (edit, location, close, checkmark) are small and functional. If the 3D style makes them hard to read at 24px, render them flat with the same colours.
+
 ## Out of scope
 
 Record features intentionally excluded from this project.
