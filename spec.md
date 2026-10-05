@@ -55,6 +55,18 @@ Translate every fixed brief requirement and the selected research-driven feature
 
 Define the weather inputs, recommendation categories, coded rules, and shared state. Weather values must come from the provider, and rules must follow the weather guidance cited in `research.md`. The selected location, date, and live weather data must produce one recommendation state that drives every visual and written output.
 
+**Outfit groups.** These use feels-like (apparent) temperature from Open-Meteo, following the NWS wind-chill guidance cited in `research.md`. The cut-offs are a product decision by the Developer, not a cited standard.
+
+| Group | Feels-like °F | Example outfit |
+|---|---|---|
+| Hot | 80 and above | Tee, shorts, sneakers |
+| Warm | 65–79 | Tee or light top, jeans or shorts |
+| Mild | 55–64 | Long sleeves or light layer, jeans |
+| Cool | 40–54 | Sweater or hoodie, jacket, jeans |
+| Cold | below 40 | Heavy coat, hat, boots |
+
+Forecast days use the daily maximum feels-like temperature.
+
 ## Content variation
 
 Define at least three outfit variations for each recommendation category and at least three wording variations for each reminder type. Define how outfit and reminder variations are chosen independently at random, and how a previously selected date keeps the same variations, including whether they persist after the page reloads.
