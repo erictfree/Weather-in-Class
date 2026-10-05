@@ -134,19 +134,21 @@ Once the recommendation categories are chosen, estimate the art needed: the char
 - **Deployment:** GitHub Pages.
 - **Recommendation categories:** top, bottom, footwear, outerwear. Each needs at least 3 variations per the brief.
 - **Reminder categories:** umbrella (rain), sunscreen (UV), hydration (heat) — the three examples named directly in the brief. Each needs at least 3 wording variations per the brief.
-- **Art estimate:** 1 base character + up to 4 categories × 3 variations = up to 12 clothing-art pieces, plus weather icons (sun/cloud/rain/snow, etc.) and reminder icons (umbrella, sunscreen, water). Confirms AI-generated art is the right call above — 12+ clothing pieces plus icons is a lot to commission or hand-draw for a class project timeline.
+- **Art estimate:** 1 base character + up to 4 categories × 3 variations = up to 12 clothing-art pieces, plus weather icons (sun/cloud/rain/snow, etc.) and reminder icons (umbrella, sunscreen, water). Confirms AI-generated art is the right call above — 12+ clothing pieces plus icons is a lot to commission or hand-draw within the project timeline.
 - **Visual direction:** cartoon, Pixar-style 3D-ish illustration. Detailed screen structure and layout deferred to `spec.md`, defined from hand-drawn screens once drawn.
-- **Additional feature:** quick two-location switch — lets the User flip between two saved locations (e.g. home town and campus) without re-entering one each time. Directly answers user story #6 (splitting time between two places), which the brief's "save only the most recent location" requirement doesn't cover on its own. Referenced in Stylix and Wearther's multi-location support.
+- **Additional feature:** quick two-location switch — lets the User flip between two saved locations (e.g. home town and campus) without re-entering one each time. Directly answers user story #5 (splitting time between two places), which the brief's "save only the most recent location" requirement doesn't cover on its own.
 
 ## Revisions
 
 Record new evidence or changed decisions and explain why they changed.
 
+- **2026-10-05:** Corrected the additional-feature reference to user story #5 (there are five stories), removed an unsourced claim that Stylix and Wearther support multiple locations, and reworded the art-estimate timeline note. No decisions changed.
+
 ## Approval
 
 The Developer reviews the sources and decisions, corrects this file, and explicitly approves it before specification begins.
 
-**Status: Approved by the Developer.**
+**Approved by the Developer on 2026-10-05.**
 
 ## Saving the transcript
 
