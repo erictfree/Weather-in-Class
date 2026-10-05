@@ -50,5 +50,5 @@ Static site with no build step (plain HTML, CSS and JavaScript modules).
 
 - Run locally: `python3 -m http.server 8000` in the repo root, then open http://localhost:8000. Opening `index.html` directly doesn't work, because browsers block JavaScript modules from `file://`.
 - Layout: phone below 900px, laptop at 900px and above (`css/styles.css`).
-- Code: `js/ui.js` draws everything from one state object. `js/main.js` currently holds fake data (CP1).
+- Code: `js/ui.js` draws everything from one state object. `js/weather.js` fetches Open-Meteo and returns one record per day; `js/content.js` maps weather codes to icons. `js/main.js` still holds a fake outfit and reminders until CP3/CP4.
 - Art: `assets/characters/<outfit-id>.webp` and `assets/icons/<name>.webp`.

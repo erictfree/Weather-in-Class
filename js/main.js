@@ -1,41 +1,76 @@
-// CP1: fake state to check the layout. Replaced by live data (CP2) and state.js (CP4).
+// CP2: live weather for two hard-coded slots. Outfit and reminders are still fake
+// until the rules (CP3) and recommendation state (CP4); locations come in CP6.
 import { render } from "./ui.js";
-
-const fakeDays = [
-  ["2026-10-05", "Mon", "Mon, Oct 5", "clear", 83],
-  ["2026-10-06", "Tue", "Tue, Oct 6", "partly-cloudy", 81],
-  ["2026-10-07", "Wed", "Wed, Oct 7", "cloudy", 76],
-  ["2026-10-08", "Thu", "Thu, Oct 8", "rain", 72],
-  ["2026-10-09", "Fri", "Fri, Oct 9", "clear", 79],
-  ["2026-10-10", "Sat", "Sat, Oct 10", "thunderstorm", 84],
-  ["2026-10-11", "Sun", "Sun, Oct 11", "fog", 80],
-].map(([date, shortName, longDate, icon, high], i) => ({
-  date, shortName, longDate, icon, high, isToday: i === 0,
-}));
+import { fetchForecast } from "./weather.js";
 
 const state = {
-  slots: [{ name: "Austin" }, { name: "Los Angeles" }],
-  activeSlot: 0,
-  location: { name: "Austin" },
-  days: fakeDays,
-  selectedDate: fakeDays[0].date,
-  weather: { icon: "clear", temp: 83, feelsLike: 87, humidity: 48, wind: 10 },
-  outfit: { id: "hot-2", text: "Tank top, denim shorts, low-top sneakers, sunglasses." },
-  layerNote: "",
-  reminders: [
-    { icon: "sunscreen", text: "UV is up. Put on sunscreen (SPF 30+)." },
-    { icon: "water", text: "Stay hydrated. Fill up your bottle." },
+  slots: [
+    { name: "Austin", lat: 30.2672, lon: -97.7431 },
+    { name: "Los Angeles", lat: 34.0522, lon: -118.2437 },
   ],
+  activeSlot: 0,
+  forecasts: {},      // in-memory, keyed by slot index
+  selectedDate: null,
 };
 
+// Fake recommendation until CP3/CP4.
+const fakeOutfit = { id: "hot-2", text: "Tank top, denim shorts, low-top sneakers, sunglasses." };
+const fakeReminders = [
+  { icon: "sunscreen", text: "UV is up. Put on sunscreen (SPF 30+)." },
+  { icon: "water", text: "Stay hydrated. Fill up your bottle." },
+];
+
+// Today shows current conditions; other days show the daily forecast (R7).
+function weatherFor(forecast, day) {
+  if (day.isToday) return forecast.current;
+  return {
+    icon: day.icon, temp: day.high, tempLabel: "High",
+    feelsLike: day.feelsMax, humidity: day.humidity, wind: day.wind,
+  };
+}
+
+function draw() {
+  const forecast = state.forecasts[state.activeSlot];
+  const day = forecast.days.find((d) => d.date === state.selectedDate) ?? forecast.days[0];
+  state.selectedDate = day.date;
+  const view = {
+    slots: state.slots,
+    activeSlot: state.activeSlot,
+    location: state.slots[state.activeSlot],
+    days: forecast.days,
+    selectedDate: day.date,
+    weather: weatherFor(forecast, day),
+    outfit: fakeOutfit,
+    layerNote: "",
+    reminders: fakeReminders,
+  };
+  window.appState = view; // for dev-tools checks
+  render(view, handlers);
+}
+
+async function load(slot) {
+  if (!state.forecasts[slot]) {
+    document.getElementById("card-label").textContent = "Loading…";
+    const { lat, lon } = state.slots[slot];
+    state.forecasts[slot] = await fetchForecast(lat, lon);
+  }
+  draw();
+}
+
 const handlers = {
-  onSelectDate(date) { state.selectedDate = date; render(state, handlers); },
+  onSelectDate(date) { state.selectedDate = date; draw(); },
   onSelectSlot(i) {
-    if (!state.slots[i]) return;
+    if (!state.slots[i] || i === state.activeSlot) return;
     state.activeSlot = i;
-    state.location = state.slots[i];
-    render(state, handlers);
+    state.selectedDate = null;
+    load(i).catch(showError);
   },
 };
 
-render(state, handlers);
+// Basic error output; the full loading and error states come in CP7.
+function showError(err) {
+  console.error(err);
+  document.getElementById("card-label").textContent = "Weather data couldn't be loaded.";
+}
+
+load(state.activeSlot).catch(showError);

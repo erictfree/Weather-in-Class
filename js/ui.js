@@ -1,11 +1,9 @@
 // Draws every output from one state object (R8). No output computes its own rule here.
 
+import { ICON_LABELS } from "./content.js";
+
 const $ = (id) => document.getElementById(id);
 
-const ICON_LABELS = {
-  clear: "Clear", "partly-cloudy": "Partly cloudy", cloudy: "Cloudy", fog: "Fog",
-  rain: "Rain", snow: "Snow", thunderstorm: "Thunderstorm",
-};
 
 const icon = (name, alt = "") =>
   `<img src="assets/icons/${name}.webp" alt="${alt}" width="64" height="64">`;
@@ -23,10 +21,10 @@ export function render(state, handlers = {}) {
   $("card-body").innerHTML = `
     <div class="card-main">
       ${icon(weather.icon, ICON_LABELS[weather.icon])}
-      <p class="temp">${weather.temp}°</p>
+      <p class="temp">${weather.temp}°${weather.tempLabel ? `<span class="temp-label">${weather.tempLabel}</span>` : ""}</p>
     </div>
     <dl class="card-details">
-      <div><dt>Feels like</dt><dd>${weather.feelsLike}°</dd></div>
+      <div><dt>Feels like</dt><dd>${Math.round(weather.feelsLike)}°</dd></div>
       <div><dt>Humidity</dt><dd>${weather.humidity}%</dd></div>
       <div><dt>Wind</dt><dd>${weather.wind} mph</dd></div>
     </dl>`;
