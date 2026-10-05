@@ -10,6 +10,8 @@ const icon = (name, alt = "") =>
 
 export function render(state, handlers = {}) {
   const { location, days, selectedDate, weather, outfit, reminders, layerNote } = state;
+  // The strip and city switch are rebuilt below; remember which one had keyboard focus.
+  const focusedIn = document.activeElement?.closest("#day-list, #city-switch")?.id;
   const selectedDay = days.find((d) => d.date === selectedDate);
 
   // Header: place, date, units (R7)
@@ -49,6 +51,7 @@ export function render(state, handlers = {}) {
       <li>
         <button type="button" class="day" data-date="${d.date}"
           aria-pressed="${d.date === selectedDate}"
+          ${d.date === selectedDate ? 'aria-current="date"' : ""}
           aria-label="${d.longDate}, ${ICON_LABELS[d.icon]}, high ${d.high}°">
           <span class="day-name">${d.isToday ? "Today" : d.shortName}</span>
           ${icon(d.icon)}
@@ -66,6 +69,14 @@ export function render(state, handlers = {}) {
 
   $("sheet-title").textContent = `Replace “${location.name}”`;
 
+  // Keep the selected day visible in the sideways strip (phone), and give focus
+  // back to the control the keyboard user was on.
+  const selectedButton = document.querySelector('.day[aria-pressed="true"]');
+  selectedButton?.scrollIntoView({ block: "nearest", inline: "nearest" });
+  if (focusedIn === "day-list") selectedButton?.focus({ preventScroll: true });
+  if (focusedIn === "city-switch") document.querySelector('.city[aria-pressed="true"]')?.focus();
+  updateStripFade();
+
   wire(handlers);
 }
 
@@ -82,6 +93,9 @@ function wire(handlers) {
     const btn = e.target.closest(".city");
     if (btn) handlers.onSelectSlot?.(Number(btn.dataset.slot));
   });
+  const strip = document.querySelector(".day-strip");
+  strip.addEventListener("scroll", updateStripFade, { passive: true });
+  window.addEventListener("resize", updateStripFade);
   $("change-location").addEventListener("click", () => $("location-sheet").showModal());
   $("open-credits").addEventListener("click", () => $("credits").showModal());
   // Close buttons and backdrop clicks close dialogs; Esc is handled by <dialog>.
@@ -90,4 +104,12 @@ function wire(handlers) {
       if (e.target === dialog || e.target.closest("[data-close]")) dialog.close();
     });
   }
+}
+
+// Mark which sides of the day strip have more days off screen (drives the fade hint).
+function updateStripFade() {
+  const strip = document.querySelector(".day-strip");
+  const max = strip.scrollWidth - strip.clientWidth;
+  strip.classList.toggle("more-left", strip.scrollLeft > 2);
+  strip.classList.toggle("more-right", strip.scrollLeft < max - 2);
 }

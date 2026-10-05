@@ -161,13 +161,16 @@ dialog::backdrop { background: rgb(0 0 0 / 0.4); }
     background: var(--page); border-top: 1px solid var(--line);
   }
   /* Sideways-scrolling strip with a fade on the right edge hinting at more days. */
+  /* The fade only shows on a side that has more days to scroll to. */
   .day-strip {
     overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
-    mask-image: linear-gradient(to right, #000 85%, transparent);
+    --fade-left: #000; --fade-right: #000;
+    mask-image: linear-gradient(to right, var(--fade-left), #000 12%, #000 88%, var(--fade-right));
   }
+  .day-strip.more-left { --fade-left: transparent; }
+  .day-strip.more-right { --fade-right: transparent; }
   .day-strip::-webkit-scrollbar { display: none; }
   .day-strip li { scroll-snap-align: start; }
-  .day-strip ol { padding-right: 40px; }
 
   .sheet {
     margin: auto 0 0; width: 100%; max-width: 100%;
