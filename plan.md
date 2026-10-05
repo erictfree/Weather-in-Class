@@ -46,6 +46,7 @@ Summarize the structure, data flow, dependencies, task order, and main risks.
 
 - **Device location naming (resolved).** Open-Meteo has no reverse geocoding, so "Use my location" is labelled "My location" and assumed to be in the US (R3 revised in `spec.md`).
 - **Consistent character art.** All 15 outfit images must show the same character. Run a 2–3 image style test before committing to a tool.
+- **Icon contrast.** The white and pale-grey icons (cloudy, fog, snow, partly cloudy) nearly vanish on a white background at 24px. The weather card and day strip need a tinted or darker background for the 3:1 contrast in R15. Settle this at CP1 and check it at CP10.
 - **"Today" across timezones.** The date and the "now to midnight" rain window must use the location's timezone, not the device's. Test with a location in a different timezone.
 - **Deployment branch.** Pages has to serve from `main` (or a Pages workflow), so finished work needs merging into `main`. That merge is the Developer's decision.
 
@@ -63,7 +64,8 @@ Summarize the structure, data flow, dependencies, task order, and main risks.
   - [ ] Developer chooses the AI image tool; style test of 2–3 character images and 2 icons, approved by the Developer
   - [x] Test character set: 15 outfits generated with ChatGPT, background removed, saved as WebP in `assets/characters/` (about 40 KB each)
   - [ ] Regenerate the character set to read as a college-age young adult (Developer), then reprocess
-  - [ ] All 15 outfit images and 15 icons generated, exported as transparent PNG or WebP, saved in `assets/`, and the tool recorded for credits
+  - [x] 15 icons generated with ChatGPT, background removed, saved as 256×256 WebP in `assets/icons/` (7–19 KB each)
+  - [ ] Final character set exported and saved in `assets/characters/`, and the tool recorded for credits
 - [ ] **CP1 Layout shell:** `index.html` and CSS match the v2 wireframe with fake data and placeholder art. The phone layout is below 900px and the laptop layout is at 900px and above. Check: R13 at 375px and 1280px with no horizontal scroll, and R14 control placement and 44px targets.
 - [ ] **CP2 Live weather:** `weather.js` fetches current, hourly and 7-day daily data in °F and mph and fills the weather card. Check: R1 against a raw API response for the same coordinates.
 - [ ] **CP3 Rules:** `rules.js` and its unit tests cover the outfit groups, layer note, umbrella, sunscreen, hydration and the WMO-to-icon map. Check: R9 boundary tests pass (`node --test`), with output shown.

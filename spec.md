@@ -140,9 +140,9 @@ List every art and graphical asset: the character, each outfit variation, icons,
 | Asset | Count | Where | Format | Source |
 |---|---|---|---|---|
 | Character in each outfit (IDs in Content variation) | 15 | Main screen | WebP, 600×900, transparent background, in `assets/characters/<id>.webp` | AI-generated with ChatGPT (OpenAI); background removed with rembg. **Current set is test art, to be regenerated** (see Revisions). Credited in R11. |
-| Weather icons: clear, partly cloudy, cloudy, fog, rain, snow, thunderstorm | 7 | Weather card, day strip | PNG or WebP, transparent background, exported at 2× | AI-generated, same tool and style as the character |
-| Reminder icons: umbrella, sunscreen, water, layer | 4 | Reminder row | PNG or WebP, transparent background, exported at 2× | AI-generated, same tool and style as the character |
-| UI icons: edit ✎, location crosshair, close ×, checkmark | 4 | Controls | PNG or WebP, transparent background, exported at 2× | AI-generated, same tool and style as the character |
+| Weather icons: clear, partly cloudy, cloudy, fog, rain, snow, thunderstorm | 7 | Weather card, day strip | WebP, 256×256, transparent background, in `assets/icons/<name>.webp` | AI-generated with ChatGPT (OpenAI), same style as the character; background removed with rembg |
+| Reminder icons: umbrella, sunscreen, water, layer | 4 | Reminder row | WebP, 256×256, transparent background, in `assets/icons/<name>.webp` | AI-generated with ChatGPT (OpenAI), same style as the character; background removed with rembg |
+| UI icons: edit ✎, location crosshair, close ×, checkmark | 4 | Controls | WebP, 256×256, transparent background, in `assets/icons/<name>.webp` | AI-generated with ChatGPT (OpenAI), same style as the character; background removed with rembg |
 
 All icons are AI-generated (Developer decision). Every icon has a text label or accessible name next to it (R15), so its meaning never depends on the image alone. Icons must stay legible at their smallest display size (about 24px) and meet 3:1 contrast against their background.
 
