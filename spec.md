@@ -20,9 +20,28 @@ Read `AGENTS.md`, `brief.md`, `research.md`, and this file. Review the screen dr
 
 State what the app should help its Users accomplish and name the user story or stories that define that need.
 
+Help a US college student decide what to wear for today or any of the next six days. They get a glance at the forecast for a location they choose, turned into a character dressed for the conditions, a short written outfit description and reminders (umbrella, sunscreen, water), so they don't have to interpret raw weather data. Defined by the user stories in `research.md`: the main quick-glance story, forgotten prep items, planning ahead, high-contrast readability, and switching between two places.
+
 ## Screen designs
 
 Draw every proposed screen by hand, in both phone and laptop layouts, on paper, a tablet, a whiteboard, or another hand-drawing surface. Save photos or exports in `reference/`, provide them to the Agent, and link them here. Use the drawings to define layout, hierarchy, controls, navigation, and important interaction states.
+
+- [Hand sketch, v1](reference/screens-v1-sketch.jpg): phone, desktop and credits.
+- [Wireframe, v2](reference/screens-v2-wireframe.png) ([SVG](reference/screens-v2-wireframe.svg)): redrawn from the sketch with a revised location control and date picker.
+
+**Main screen, phone (top to bottom):** header with the active place, the date and units (read-only); a weather card labelled current or forecast, showing an icon, the temperature, feels like, humidity and wind; the character; the clothing description; the reminder row; the 7-day strip, which scrolls sideways; the two-city switch and the ✎ Change button, within thumb reach; and a Credits link.
+
+**Main screen, laptop:** the header is at top left, with the two-city switch and ✎ at top right; all 7 days show in a full-width row; the weather card is on the left and the character is on the right, with the clothing description and reminder row under the character; Credits is at the bottom.
+
+**Reminders:** a row of icons with short text, placed directly under the clothing description in both layouts.
+
+**Change location:** opens from ✎ as a bottom sheet on the phone and a dropdown on the laptop. It contains a US city or ZIP search, "Use my location" and a results list, and it replaces the selected city. If location permission is denied, it shows a short message and search stays available.
+
+**Credits:** a popup, the same in both layouts.
+
+**Still to place:** loading and error states, and the data-source label.
+
+**Deliberate change from the brief:** the brief says to save only the most recent location. The Developer has chosen the two-city switch as the additional feature, so two locations are saved on the device.
 
 ## Requirements
 
